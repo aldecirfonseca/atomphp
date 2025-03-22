@@ -1,7 +1,6 @@
 <?php
-// core\Erros.php
 
-namespace Core;
+namespace Core\Library;
 
 class Erros
 {

@@ -1,0 +1,19 @@
+<?php
+
+// core\library\RequestTrait.php
+
+namespace Core\Library;
+
+trait RequestTrait
+{
+    static public function getRotaParametros()
+    {
+        $aParametros    = explode("/", ltrim(filter_var(rtrim($_SERVER['REQUEST_URI'], "/"), FILTER_SANITIZE_URL), "/"));
+
+        return [
+            'controller'    => (isset($aParametros[0]) && !empty($aParametros[0]) ? ucfirst($aParametros[0]) : DEFAULT_CONTROLLER),
+            'method'        => isset($aParametros[1]) ? $aParametros[1] : DEFAULT_METODO,
+            'action'        => isset($aParametros[2]) ? $aParametros[2] : "view"
+        ];
+    }
+}

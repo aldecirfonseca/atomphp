@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Library;
+namespace Core\Library;
 
 use PDO;
 use PDOException;

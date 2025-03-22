@@ -1,6 +1,6 @@
 <?php
 
-namespace Core;
+namespace Core\Library;
 
 class Ambiente
 {
