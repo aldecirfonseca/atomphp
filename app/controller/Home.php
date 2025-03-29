@@ -9,9 +9,7 @@ class Home extends ControllerMain
 {
     public function index()
     {
-        echo "Bem-vindo(a) ao AtomPHP.<br>";
-
-        var_dump($this);
+        $this->loadView("home");
     }
 
     public function sobre($action = null)
