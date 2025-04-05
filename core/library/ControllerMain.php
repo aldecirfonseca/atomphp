@@ -96,6 +96,17 @@ class ControllerMain
             require_once $pathView . "comuns" . DIRECTORY_SEPARATOR . "cabecalho.php";
         }
 
+        // Será utilizado futuramente para recuperar valores quando idenficado
+        // erros na validação do formulário
+        if (Session::get("inputs") != false) {
+            $aDados = Session::getDestroy("inputs");
+        }
+
+        // Será utilizado para recuperar valores e preencher o formulário
+        if (count($aDados) > 0) {
+            $_POST = $aDados;
+        }
+
         // carrega a página
         if (file_exists($pathView . $nome . ".php")) {
             require_once $pathView . $nome . ".php";

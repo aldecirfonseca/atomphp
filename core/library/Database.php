@@ -14,7 +14,8 @@ class Database
     private static $port     = "";
     private static $user     = "";
     private static $password = "";
-    private static $db       = "";        
+    private static $db       = "";
+    private $table = "";
     
     /**
      * Método construtor do banco de dados
@@ -95,6 +96,18 @@ class Database
 
     private function disconnect(){
         $this->conexao = null;
+    }
+
+    /**
+     * table
+     *
+     * @param string $table 
+     * @return object
+     */
+    public function table($table)
+    {
+        $this->table = $table;
+        return $this;
     }
 
     /**
