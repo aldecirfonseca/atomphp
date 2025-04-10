@@ -2,11 +2,14 @@
 
 namespace Core\Library;
 
+use Core\Library\Request;
+
 class ControllerMain
 {
     protected $controller;
     protected $method;
     protected $action;
+    protected $request;
     public $model;
 
     use RequestTrait;
@@ -31,9 +34,10 @@ class ControllerMain
         $this->method       = $aParametros['method'];
         $this->action       = $aParametros['action'];
         $this->model        = $this->loadModel($this->controller);
+        $this->request      = new Request();
 
         // carregar helper padrão
-        $this->loadHelper("atomaux");
+        $this->loadHelper("utilits");
     }
 
     /**

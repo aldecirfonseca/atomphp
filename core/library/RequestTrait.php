@@ -21,7 +21,9 @@ trait RequestTrait
             'method'     => isset($aParametros[1]) ? $aParametros[1] : DEFAULT_METODO,
             'action'     => isset($aParametros[2]) ? $aParametros[2] : "view",
             'id'         => isset($aParametros[3]) ? $aParametros[3] : 0,
-            'outrosPar'  => $outrosPar
+            'outrosPar'  => $outrosPar,
+            'get'        => $_GET,
+            'post'       => $_POST
         ];
     }
 }
