@@ -1,6 +1,5 @@
 {
     "name": "aldecir/atomphp",
-    "description": "AtomPHP, micro framework desenvolvido com a turma ADS 2025, 5º período",
     "autoload": {
         "psr-4": {
             "App\\": "app/",
@@ -13,5 +12,10 @@
             "email": "aldecirfonseca@hotmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.9.2"        
+    },
+    "desativado": {
+        "aldecirfonseca/atomphp": "*"
+    }
 }
