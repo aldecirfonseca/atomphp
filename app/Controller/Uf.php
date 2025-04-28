@@ -19,7 +19,7 @@ class Uf extends ControllerMain
      */
     public function index()
     {
-        return $this->loadView("admin\listaUf", $this->model->lista());
+        return $this->loadView("admin\listaUf", $this->model->lista("sigla"));
     }
 
     public function form($action, $id)

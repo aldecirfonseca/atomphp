@@ -20,11 +20,11 @@ class Database
     private $select = "*";
     private $join = "";
     private $where = "";
-    private $params = [];
     private $groupBy = "";
     private $orderBy = "";
     private $limit = "";  
-    
+    private $params = [];
+
     /**
      * construct
      *
@@ -316,6 +316,18 @@ class Database
     }
 
     /**
+     * select
+     *
+     * @param string $columns 
+     * @return object
+     */
+    public function select($columns = "*")
+    {
+        $this->select = $columns;
+        return $this;
+    }
+
+    /**
      * table
      *
      * @param string $table 
@@ -325,5 +337,113 @@ class Database
     {
         $this->table = $table;
         return $this;
+    }
+
+    /**
+     * join
+     *
+     * @param string $table 
+     * @param string $condition 
+     * @param string $tipoJoin 
+     * @return object
+     */
+    public function join($table, $condition, $tipoJoin = "INNER")
+    {
+        $this->join .= ' ' . $tipoJoin . " JOIN " . $table . " ON " . $condition;
+        return $this;
+    }
+
+    /**
+     * groupBy
+     *
+     * @param string $column 
+     * @return object
+     */
+    public function groupBy($column)
+    {
+        $this->groupBy = " GROUP BY $column";
+        return $this;
+    }
+
+    /**
+     * orderBy
+     *
+     * @param string $column 
+     * @param string $direction 
+     * @return object
+     */
+    public function orderBy($column, $direction = "ASC")
+    {
+        $this->orderBy = " ORDER BY " . $column . " " . $direction;
+        return $this;
+    }
+
+    /**
+     * prepareSelect
+     *
+     * @param string $tipoRetorno 
+     * @return array|int
+     */
+    public function prepareSelect($tipoRetorno = "all")
+    {
+        $cSql = "SELECT {$this->select} FROM {$this->table} {$this->join} {$this->where} {$this->groupBy} {$this->orderBy}";
+        $query = $this->connect()->prepare($cSql, [PDO::ATTR_CURSOR => PDO::CURSOR_SCROLL]);
+        $rscDados = $query->execute($this->params);
+
+        self::dbClear();
+
+        if ($tipoRetorno == "all") {
+            return $this->dbBuscaArrayAll($query);
+        } elseif ($tipoRetorno == "first") {
+            return $this->dbBuscaArray($query);
+        } elseif ($tipoRetorno == "count") {
+            return $this->dbNumeroLinhas($rscDados);
+        }
+    }
+
+    /**
+     * dbClear
+     *
+     * @return void
+     */
+    public function dbClear()
+    {
+        $this->select = "*";
+        $this->join = "";
+        $this->where = "";
+        $this->groupBy = "";
+        $this->orderBy = "";
+        $this->limit = "";  
+        $this->params = [];
+    }
+
+    /**
+     * findAll
+     *
+     * @return array
+     */
+    public function findAll()
+    {
+        return $this->prepareSelect();
+    }
+
+    /**
+     * first
+     *
+     * @return array
+     */
+    public function first()
+    {
+        return $this->prepareSelect("first");
+    }
+
+    /**
+     * findCount
+     *
+     * @return int
+     */
+    public function findCount()
+    {
+        return $this->prepareSelect("count");
     }
 }

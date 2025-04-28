@@ -31,14 +31,8 @@ class ModelMain
      * @param string $orderby 
      * @return array
      */
-    public function lista($orderby = 'descricao')
-    {
-        $rsc = $this->db->dbSelect("SELECT * FROM {$this->table} ORDER BY {$orderby}");
-
-        if ($this->db->dbNumeroLinhas($rsc) > 0) {
-            return $this->db->dbBuscaArrayAll($rsc);
-        } else {
-            return [];
-        }
+    public function lista($orderby = 'descricao', $direction = "ASC")
+    {   
+        return $this->db->orderBy($orderby, $direction)->findAll();
     }
 }
