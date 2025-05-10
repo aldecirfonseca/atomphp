@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use Core\Library\ControllerMain;
-use Core\Library\Session;
+use Core\Library\Redirect;
 
 class Uf extends ControllerMain
 {
@@ -25,20 +25,22 @@ class Uf extends ControllerMain
 
     public function form($action, $id)
     {
-        return $this->loadView("admin/formUf");
+        return $this->loadView("admin/formUf", $this->model->getById($id));
     }
 
-    public function teste()
+    /**
+     * insert
+     *
+     * @return void
+     */
+    public function insert()
     {
-        $result = $this->model->db->insert([
-            "sigla" => "RJ",
-            "descricao" => "Rio de Janeiro"
-        ]);
+        $post = $this->request->getPost();
 
-        if ($result > 0) {
-            var_dump("Sucesso: " . $result);
+        if ($this->model->insert($post)) {
+            return Redirect::page("Uf", ["msgSucess" => "Registro inserido com sucesso."]);
         } else {
-            var_dump(Session::get("msgError"));
+            return Redirect::page("Uf");
         }
     }
 }

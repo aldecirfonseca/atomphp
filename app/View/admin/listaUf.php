@@ -18,7 +18,7 @@
                     <td><?= $value['sigla'] ?></td>
                     <td><?= $value['descricao'] ?></td>
                     <td>
-                        <a href="" title="Visualizar">Visualizar</a>
+                        <a href="<?= baseUrl() ?>Uf/form/view/<?= $value['id'] ?>" title="Visualizar">Visualizar</a>
                         <a href="" title="Alterar">Alterar</a>
                         <a href="" title="Excluir">Excluir</a>
                     </td>

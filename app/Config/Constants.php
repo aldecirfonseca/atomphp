@@ -6,6 +6,9 @@ defined('DEFAULT_CONTROLLER') || define("DEFAULT_CONTROLLER", 'Home');
 // Método padrão
 defined('DEFAULT_METODO') || define("DEFAULT_METODO", 'index');
 
+// Definir o time_zone_default
+defined("DEFAULT_TIME_ZONE") || define("DEFAULT_TIME_ZONE", "America/Sao_Paulo");
+
 // Tamanho máximo para upload de arquivos (5 mega bytes)
 defined('FILE_MAXSIZE') || define('FILE_MAXSIZE', 5);
 
@@ -39,5 +42,4 @@ defined('FILE_ALLOWEDTYPES') || define('FILE_ALLOWEDTYPES', [
     'video/x-msvideo',
     'application/json',
     'application/xml'
-    //'application/octet-stream',                                                     //  Para arquivos binários genéricos (use com cautela)
 ]);

@@ -12,17 +12,19 @@
                     name="sigla" 
                     placeholder="Sigla UF"
                     maxlength="2"
+                    value="<?= setValor("sigla") ?>"
                     required
                     autofocus>
             </div>
 
             <div class="col-10 mb-3">
-                <label for="nome" class="form-label">Descrição</label>
+                <label for="descricao" class="form-label">Descrição</label>
                 <input type="text" class="form-control" 
-                    id="nome" 
-                    name="nome" 
-                    placeholder="Nome da UF"
+                    id="descricao" 
+                    name="descricao" 
+                    placeholder="Descrição da UF"
                     maxlength="50"
+                    value="<?= setValor("descricao") ?>"
                     required>
             </div>
         </div>
