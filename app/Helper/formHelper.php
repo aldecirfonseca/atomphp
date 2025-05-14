@@ -1,7 +1,6 @@
 <?php
 
 use Core\Library\Request;
-use Core\Library\Session;
 
 function formTitulo($titulo, $btnNovo = false)
 {
@@ -22,8 +21,8 @@ function formTitulo($titulo, $btnNovo = false)
                     </div>
                 </div>';
 
-    var_dump(Session::getDestroy("msgSucess"));
-    var_dump(Session::getDestroy("msgError"));
+    $cHtml .= exibeAlerta();
+
 
     return $cHtml;
 }
@@ -71,18 +70,3 @@ function formButton()
     return $cHtml;
 }
 
-/**
- * setValor
- *
- * @param string $campo 
- * @param mixed $default 
- * @return mixed
- */
-function setValor($campo, $default = "")
-{
-    if (isset($_POST[$campo])) {
-        return $_POST[$campo];
-    } else {
-        return $default;
-    }
-}

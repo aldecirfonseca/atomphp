@@ -37,7 +37,7 @@ class ControllerMain
         $this->request      = new Request();
 
         // carregar helper padrão
-        $this->loadHelper("utilits");
+        $this->loadHelper(["formulario", "utilits"]);
     }
 
     /**
