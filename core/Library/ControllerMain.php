@@ -100,7 +100,6 @@ class ControllerMain
             require_once $pathView . "Comuns" . DIRECTORY_SEPARATOR . "cabecalho.php";
         }
 
-        // Será utilizado futuramente para recuperar valores quando idenficado
         // erros na validação do formulário
         if (Session::get("inputs") != false) {
             $aDados = Session::getDestroy("inputs");
@@ -109,6 +108,11 @@ class ControllerMain
         // Será utilizado para recuperar valores e preencher o formulário
         if (count($aDados) > 0) {
             $_POST = $aDados;
+        }
+        
+        // Será utilizado futuramente para recuperar valores quando idenficado
+        if (Session::get("errors") != false) {
+            $_POST['formErrors'] = Session::getDestroy('errors');
         }
 
         // carrega a página

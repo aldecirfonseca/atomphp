@@ -19,8 +19,8 @@
                     <td><?= $value['descricao'] ?></td>
                     <td>
                         <a href="<?= baseUrl() ?>Uf/form/view/<?= $value['id'] ?>" title="Visualizar">Visualizar</a>
-                        <a href="" title="Alterar">Alterar</a>
-                        <a href="" title="Excluir">Excluir</a>
+                        <a href="<?= baseUrl() ?>Uf/form/update/<?= $value['id'] ?>" title="Alterar">Alterar</a>
+                        <a href="<?= baseUrl() ?>Uf/form/delete/<?= $value['id'] ?>" title="Excluir">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

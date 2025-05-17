@@ -22,8 +22,7 @@ function formTitulo($titulo, $btnNovo = false)
                 </div>';
 
     $cHtml .= exibeAlerta();
-
-
+    
     return $cHtml;
 }
 

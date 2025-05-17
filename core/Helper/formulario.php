@@ -22,6 +22,26 @@ if (! function_exists('setValor')) {
 
 }
 
+if (! function_exists('setMsgFilderError')) {
+    /**
+     * setMsgFilderError
+     *
+     * @param string $campo 
+     * @return string
+     */
+    function setMsgFilderError($campo)
+    {
+        $cRet   = '';
+
+        if (isset($_POST['formErrors'][$campo])) {
+            $cRet .= '<div class="mt-2 text-danger">';
+                $cRet .= $_POST['formErrors'][$campo];
+            $cRet .= '</div>';
+        }
+
+        return $cRet;
+    }
+}
 
 if (! function_exists('exibeAlerta')) {
     /**

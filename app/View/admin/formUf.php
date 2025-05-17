@@ -4,6 +4,8 @@
 
     <form method="POST" action="<?= $this->request->formAction() ?>">
 
+        <input type="hidden" name="id" id="id" value="<?= setValor("id") ?>">
+
         <div class="row">
             <div class="col-2 mb-3">
                 <label for="sigla" class="form-label">Sigla</label>
@@ -15,6 +17,7 @@
                     value="<?= setValor("sigla") ?>"
                     required
                     autofocus>
+                <?= setMsgFilderError("sigla") ?>
             </div>
 
             <div class="col-10 mb-3">
@@ -26,6 +29,7 @@
                     maxlength="50"
                     value="<?= setValor("descricao") ?>"
                     required>
+                <?= setMsgFilderError("descricao") ?>
             </div>
         </div>
 
