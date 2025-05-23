@@ -106,9 +106,13 @@ class ControllerMain
         }
 
         // Será utilizado para recuperar valores e preencher o formulário
-        if (count($aDados) > 0) {
-            $_POST = $aDados;
-        }
+        if (isset($dados['data'])) {
+			$_POST = $dados['data'];
+		} else {
+			if (count($dados) > 0) {
+				$_POST = $dados;
+			}
+		}
         
         // Será utilizado futuramente para recuperar valores quando idenficado
         if (Session::get("errors") != false) {
