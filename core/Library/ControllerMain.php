@@ -92,7 +92,6 @@ class ControllerMain
      */
     public function loadView($nome, $dados = [], $exibeCabRodape = true)
     {
-        $aDados = $dados;
         $pathView = ".." . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "View" . DIRECTORY_SEPARATOR;
 
         // carrega cabeçalho
@@ -102,7 +101,7 @@ class ControllerMain
 
         // erros na validação do formulário
         if (Session::get("inputs") != false) {
-            $aDados = Session::getDestroy("inputs");
+            $dados = Session::getDestroy("inputs");
         }
 
         // Será utilizado para recuperar valores e preencher o formulário

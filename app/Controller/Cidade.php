@@ -21,26 +21,19 @@ class Cidade extends ControllerMain
      */
     public function index()
     {
-        return $this->loadView("admin\listaCidade", $this->model->listaCidade());
+        return $this->loadView("sistema\listaCidade", $this->model->listaCidade());
     }
 
-    /**
-     * form
-     *
-     * @param string $action 
-     * @param int $id 
-     * @return void
-     */
     public function form($action, $id)
     {
         $UfModel = new UfModel();
 
         $dados = [
-            "data" => $this->model->getById($id),
-            "aUf" => $UfModel->lista()
+            'data' => $this->model->getById($id),               // Busca Cidade
+            'aUf' => $UfModel->lista("sigla")                   // Busca UFs a serem exibidas na combobox
         ];
 
-        return $this->loadView("admin/formCidade", $dados);
+        return $this->loadView("sistema/formCidade", $dados);
     }
 
     /**

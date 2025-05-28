@@ -8,7 +8,7 @@ class UfModel extends ModelMain
 {
     protected $table = "uf";
     
-    protected $validationRules = [
+    public $validationRules = [
         "sigla"  => [
             "label" => 'Sigla',
             "rules" => 'required|min:2|max:3'

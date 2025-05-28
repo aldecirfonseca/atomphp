@@ -2,7 +2,7 @@
 
 <div class="m-2">
 
-    <form method="POST" action="<?= $this->request->formAction() ?>">
+    <form method="POST" action="<?= $this->request->formAction() ?>" enctype="multipart/form-data">
 
         <input type="hidden" name="id" id="id" value="<?= setValor("id") ?>">
 
@@ -31,6 +31,24 @@
                     required>
                 <?= setMsgFilderError("descricao") ?>
             </div>
+        </div>
+
+        <div class="row">
+            <?php if (in_array($this->request->getAction(), ['insert', 'update'])): ?>
+                <div class="mb-3 col-12">
+                    <label for="bandeira" class="form-label">Imagem da Bandeira da UF</label>
+                    <input type="file" class="form-control" id="bandeira" name="bandeira" placeholder="Anexar a Imagem da Bandeira da UF" maxlength="100" value="<?= setValor('bandeira') ?>">
+                    <?= setMsgFilderError('bandeira') ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (!empty(setValor("bandeira"))): ?>
+                <div class="mb-3 col-12">
+                    <h5>Imagem</h5>
+                    <img src="<?= baseUrl() . 'imagem.php?file=uf/' . setValor("bandeira") ?>" class="img-thumbnail" height="120" width="240" alt="Imagem Bandeira UF">
+                    <input type="hidden" name="nomeImagem" id="nomeImagem" value="<?= setValor("bandeira") ?>">
+                </div>
+            <?php endif; ?>
         </div>
 
         <?= formButton() ?>

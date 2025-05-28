@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `cidade` (
   UNIQUE KEY `nome_uf_id` (`nome`,`uf_id`),
   KEY `FK1_cidade_uf_id` (`uf_id`),
   CONSTRAINT `FK1_cidade_uf_id` FOREIGN KEY (`uf_id`) REFERENCES `uf` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Exportação de dados foi desmarcado.
 
@@ -33,9 +33,39 @@ CREATE TABLE IF NOT EXISTS `uf` (
   `id` int NOT NULL AUTO_INCREMENT,
   `sigla` varchar(2) NOT NULL,
   `descricao` varchar(50) NOT NULL,
+  `bandeira` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sigla` (`sigla`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela atomphp.usuario
+CREATE TABLE IF NOT EXISTS `usuario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nivel` int NOT NULL DEFAULT '2' COMMENT '1=Super Administrador; 11=Administador; 21=Usuário',
+  `nome` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `email` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `senha` varchar(250) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `statusRegistro` int NOT NULL DEFAULT '1' COMMENT '1=Ativo; 2=Inativo; 3=Bloqueado;',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela atomphp.usuariorecuperasenha
+CREATE TABLE IF NOT EXISTS `usuariorecuperasenha` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario_id` int NOT NULL,
+  `chave` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `statusRegistro` int NOT NULL DEFAULT '1' COMMENT '1=Ativo;2=Inativo',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `chave` (`chave`) USING BTREE,
+  KEY `FK1_usuariorecuperacaosenha` (`usuario_id`) USING BTREE,
+  CONSTRAINT `FK1_usuariorecuperacaosenha` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
 

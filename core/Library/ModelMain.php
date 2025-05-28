@@ -5,7 +5,7 @@ namespace Core\Library;
 class ModelMain
 {
     public $db;
-    protected $validationRules = [];
+    public $validationRules = [];
     protected $table;
     protected $primaryKey = "id";
 
