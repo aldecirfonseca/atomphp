@@ -109,6 +109,7 @@ class Uf extends ControllerMain
             }
 
             //
+            unset($post['nomeImagem']);
 
             if ($this->model->update($post)) {
                 return Redirect::page($this->controller, ["msgSucesso" => "Registro alterado com sucesso."]);

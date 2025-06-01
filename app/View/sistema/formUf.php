@@ -42,7 +42,7 @@
                 </div>
             <?php endif; ?>
 
-            <?php if (!empty(setValor("bandeira"))): ?>
+            <?php if (trim(setValor("bandeira")) != ""): ?>
                 <div class="mb-3 col-12">
                     <h5>Imagem</h5>
                     <img src="<?= baseUrl() . 'imagem.php?file=uf/' . setValor("bandeira") ?>" class="img-thumbnail" height="120" width="240" alt="Imagem Bandeira UF">

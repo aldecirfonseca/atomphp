@@ -30,7 +30,7 @@
                     name="uf_id" 
                     required>
                     <option value="">...</option>
-                    <?php foreach ($aDados['aUf'] as $value): ?>
+                    <?php foreach ($dados['aUf'] as $value): ?>
                         <option value="<?= $value['id'] ?>" <?= ($value['id'] == setValor("uf_id") ? 'SELECTED' : '') ?>><?= $value['sigla']  . ' - '. $value['descricao'] ?></option>
                     <?php endforeach; ?>
                 </select>

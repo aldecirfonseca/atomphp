@@ -1,6 +1,6 @@
 <?= formTitulo("Lista Cidade", true) ?>
 
-<?php if (count($aDados) > 0): ?>
+<?php if (count($dados) > 0): ?>
 
     <div class="m-2">
 
@@ -15,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($aDados as $value): ?>
+                <?php foreach ($dados as $value): ?>
                     <tr>
                         <th scope="row"><?= $value['id'] ?></th>
                         <td><?= $value['nome'] ?></td>
