@@ -20,11 +20,25 @@ CREATE TABLE IF NOT EXISTS `cidade` (
   `nome` varchar(50) NOT NULL,
   `uf_id` int NOT NULL,
   `codIBGE` varchar(7) NOT NULL,
+  `wiki` mediumtext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nome_uf_id` (`nome`,`uf_id`),
   KEY `FK1_cidade_uf_id` (`uf_id`),
   CONSTRAINT `FK1_cidade_uf_id` FOREIGN KEY (`uf_id`) REFERENCES `uf` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela atomphp.pessoa
+CREATE TABLE IF NOT EXISTS `pessoa` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `email` varchar(120) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `dataNascimento` date NOT NULL,
+  `whatsapp` varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `sexo` char(1) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT 'F=Feminino; M=Masculino',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Exportação de dados foi desmarcado.
 
@@ -36,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `uf` (
   `bandeira` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `sigla` (`sigla`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 -- Exportação de dados foi desmarcado.
 
@@ -65,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `usuariorecuperasenha` (
   UNIQUE KEY `chave` (`chave`) USING BTREE,
   KEY `FK1_usuariorecuperacaosenha` (`usuario_id`) USING BTREE,
   CONSTRAINT `FK1_usuariorecuperacaosenha` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Exportação de dados foi desmarcado.
 
