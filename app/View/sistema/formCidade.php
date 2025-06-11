@@ -49,9 +49,28 @@
                 <?= setMsgFilderError("codIBGE") ?>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-12 mb-3">
+                <label for="codIBGE" class="form-label">Wiki sobre a cidade</label>
+                <textarea class="form-control" id="wiki" name="wiki"><?= setValor("wiki") ?></textarea>
+                <?= setMsgFilderError("wiki") ?>
+            </div>
+        </div>
+        
         <?= formButton() ?>
 
     </form>
 
 </div>
+
+<script src="<?= baseUrl() ?>assets/ckeditor5/ckeditor5-build-classic/ckeditor.js"></script>
+
+<script type="text/javascript">
+
+    ClassicEditor
+        .create(document.querySelector('#wiki'))
+        .catch( error => {
+            console.error(error);
+        });
+
+</script>

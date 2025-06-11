@@ -15,6 +15,10 @@ class Usuario extends ControllerMain
     {
         $this->auxiliarConstruct();
         $this->loadHelper(['formHelper', 'tabela']);
+
+        if ((int)Session::get("userNivel") >= 20 ) {
+            return Redirect::page("sistema", ["msgError" => "Você não possui permissão neste programa"]);
+        }
     }
     
     /**

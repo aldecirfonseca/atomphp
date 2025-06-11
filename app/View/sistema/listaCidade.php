@@ -4,7 +4,7 @@
 
     <div class="m-2">
 
-        <table class="table table-bordered table-striped table-hover table-sm">
+        <table class="table table-bordered table-striped table-hover table-sm" id="tbListaUsuario">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
@@ -22,9 +22,9 @@
                         <td><?= $value['sigla'] ?></td>
                         <td><?= $value['codIBGE'] ?></td>                    
                         <td>
-                            <a href="<?= baseUrl() ?>Cidade/form/view/<?= $value['id'] ?>" title="Visualizar">Visualizar</a>
-                            <a href="<?= baseUrl() ?>Cidade/form/update/<?= $value['id'] ?>" title="Alterar">Alterar</a>
-                            <a href="<?= baseUrl() ?>Cidade/form/delete/<?= $value['id'] ?>" title="Excluir">Excluir</a>
+                            <?= buttons('view', $value['id'])  ?>
+                            <?= buttons('update', $value['id'])  ?>
+                            <?= buttons('delete', $value['id'])  ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -32,6 +32,8 @@
         </table>
 
     </div>
+
+    <?= datatables("tbListaUsuario") ?>
 
 <?php else: ?>
 
