@@ -13,14 +13,6 @@ class Api extends ControllerMain
     private static $token_expiration = 180; // segundos
 
     /**
-     * construct
-     */
-    public function __construct()
-    {
-        $this->auxiliarconstruct();
-    }
-
-    /**
      * generateToken
      *
      * @return void
@@ -28,25 +20,29 @@ class Api extends ControllerMain
     public static function generateToken()
     {
         $headers    = getallheaders();
-        $email      = $headers['email'] ?? '';
-        $key        = str_replace("Bearer ", "", $headers['authorization'] ?? '');
+        $authBasic  = explode(":", str_replace("Basic ", "", $headers['Authorization'] ?? ''));
 
-        if (empty($key)) {
-            $key        = str_replace("Bearer ", "", $headers['Authorization'] ?? '');
+        if (empty($authBasic)) {
+            $authBasic  = explode(":", str_replace("Basic ", "", $headers['authorization'] ?? ''));
         }
 
-        if ($key !== $_ENV['API_KEY']) {
+        $user_id    = $authBasic[0] ?? '';
+        $user_nome  = $authBasic[1] ?? '';
+
+        if (($user_id !== $_ENV['API_USER_ID']) || ($user_nome !== $_ENV['API_USER_NOME'])) {
             return Response::json([
                 'status' => 401,
-                'message' => "Key inválido ou ausente.",
+                'message' => "Key inválido ou ausente. " . json_encode($authBasic),
             ]);
         } 
 
         $payload = [
+            "iss" => "https://suaapi.com",
+            "aud" => "https://cliente.suaapi.com",
             'iat' => time(),
             'exp' => time() + (self::$token_expiration * 60),
-            "sub" => $key,
-            "email" => $email
+            "user_id" => $user_id,
+            "user_nome" => $user_nome
         ];
 
         return Response::json([

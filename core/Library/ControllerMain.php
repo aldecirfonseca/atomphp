@@ -52,6 +52,19 @@ class ControllerMain
     }
 
     /**
+     * validaNivelAcesso
+     *
+     * @param int $nivelMinino 
+     * @return void
+     */
+    public function validaNivelAcesso(int $nivelMinino = 20)
+    {
+        if (!((int)Session::get("userNivel") <= $nivelMinino)) {
+            return Redirect::page("sistema", ["msgError" => "Você não possui permissão neste programa"]);
+        }
+    }
+
+    /**
      * loadModel
      *
      * @param string $nomeModel 

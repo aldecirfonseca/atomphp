@@ -4,6 +4,10 @@
 
     <div class="m-2">
 
+    <p>
+        <i class="fa-sharp-duotone fa-light fa-bell"></i>
+    </p>
+
         <table class="table table-bordered table-striped table-hover table-sm" id="tbListaUsuario">
             <thead>
                 <tr>

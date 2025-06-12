@@ -20,7 +20,11 @@ class CidadeModel extends ModelMain
         "uf_id"  => [
             "label" => 'UF',
             "rules" => 'required|int'
-        ]
+        ],
+        "wiki"  => [
+            "label" => 'Wiki sobre a cidade',
+            "rules" => 'required|min:5'
+        ],
     ];
 
 
