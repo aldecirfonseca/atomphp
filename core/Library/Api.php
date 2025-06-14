@@ -23,7 +23,7 @@ class Api extends ControllerMain
         $authBasic  = explode(":", str_replace("Basic ", "", $headers['Authorization'] ?? ''));
 
         if (empty($authBasic)) {
-            $authBasic  = explode(":", str_replace("Basic ", "", $headers['authorization'] ?? ''));
+            $authBasic  = explode(":", str_replace("basic ", "", $headers['authorization'] ?? ''));
         }
 
         $user_id    = $authBasic[0] ?? '';
@@ -32,7 +32,7 @@ class Api extends ControllerMain
         if (($user_id !== $_ENV['API_USER_ID']) || ($user_nome !== $_ENV['API_USER_NOME'])) {
             return Response::json([
                 'status' => 401,
-                'message' => "Key inválido ou ausente. " . json_encode($authBasic),
+                'message' => "Key inválido ou ausente." . json_encode($authBasic),
             ]);
         } 
 

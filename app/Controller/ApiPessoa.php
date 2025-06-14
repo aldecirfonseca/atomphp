@@ -132,15 +132,12 @@ class ApiPessoa extends Api
                 return Response::json([
                     'status' => 201,
                     'message' => 'Pessoa atualizada com sucesso.',
-                    'data' => [
-                        'id' => $pessoa_id,
-                    ],
                 ]);
             } else {
 
                 return Response::json([
                     'status' => 400,
-                    'message' => "Pessoa não localizada. pessoa_id = " . $dadosJson['pessoa_id'],
+                    'message' => "Pessoa não localizada.",
                 ]);
             }
 
@@ -153,7 +150,126 @@ class ApiPessoa extends Api
         }
     }
 
-    public function apagar() {}
+    /**
+     * apagar
+     *
+     * @return json
+     */
+    public function apagar($pessoa_id)
+    {
+        $this->validateToken();
 
-    public function listar() {}
+        if ($this->requestMethod == "DELETE") {
+
+            $aPessoa = $this->model->db->where(["id" => $pessoa_id])->first();
+
+            if (count($aPessoa) != 0) {
+
+                // Insere a nova empresa no banco com o CNPJ enviado e a razão social retornada da API
+                $pessoa_id = $this->model->db->where("id", $pessoa_id)->delete();
+
+                if ($pessoa_id === 0) {         // dados não excluídos
+                    return Response::json([
+                        'status' => 500,
+                        'message' => Session::getDestroy("msgError"),
+                    ]);
+                }
+
+                return Response::json([
+                    'status' => 201,
+                    'message' => 'Pessoa excluída com sucesso.',
+                ]);
+            } else {
+
+                return Response::json([
+                    'status' => 400,
+                    'message' => "Pessoa não localizada.",
+                ]);
+            }
+
+        } else {
+
+            return Response::json([
+                'status' => 405,
+                'message' => 'Método não permitido.',
+            ]);
+        }
+    }
+
+    /**
+     * listar
+     *
+     * @return json
+     */
+    public function listar()
+    {
+        $this->validateToken();
+
+        if ($this->requestMethod == "GET") {
+
+            $aPessoa = $this->model->db->orderby("nome")->findAll();
+
+            if (count($aPessoa) != 0) {
+
+                return Response::json([
+                    'status' => 201,
+                    'message' => 'Pessoa excluída com sucesso.',
+                    "data" => $aPessoa,
+                ]);
+            } else {
+
+                return Response::json([
+                    'status' => 400,
+                    'message' => "Não existem pessoas cadastradas.",
+                ]);
+            }
+
+        } else {
+
+            return Response::json([
+                'status' => 405,
+                'message' => 'Método não permitido.',
+            ]);
+        }
+    }
+
+
+        /**
+     * listar
+     *
+     * @return json
+     */
+    public function getPessoa()
+    {
+        $this->validateToken();
+
+        if ($this->requestMethod == "POST") {
+
+            $dadosJson = Request::getJson();        // Lê dados enviados
+
+            $aPessoa = $this->model->db->where(["email" => $dadosJson['email']])->first();
+
+            if (count($aPessoa) != 0) {
+
+                return Response::json([
+                    'status' => 201,
+                    'message' => 'Dados retornados com sucesso.',
+                    "data" => $aPessoa,
+                ]);
+            } else {
+
+                return Response::json([
+                    'status' => 400,
+                    'message' => "Não existem pessoas cadastradas.",
+                ]);
+            }
+
+        } else {
+
+            return Response::json([
+                'status' => 405,
+                'message' => 'Método não permitido.',
+            ]);
+        }
+    }
 }

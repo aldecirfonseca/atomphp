@@ -83,7 +83,7 @@ class Request
      */
     public static function getJson(): array
     {
-        $input = file_get_contents('php://input');  // Lê dados enviados no  corpo da requisição
+        $input = file_get_contents('php://input');  // Lê dados enviados no corpo da requisição
         $data   = json_decode($input, true);
 
         return is_array($data) ? $data : [];
