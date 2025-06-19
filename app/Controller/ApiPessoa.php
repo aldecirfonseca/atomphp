@@ -209,11 +209,11 @@ class ApiPessoa extends Api
 
             $aPessoa = $this->model->db->orderby("nome")->findAll();
 
-            if (count($aPessoa) != 0) {
+            if (count($aPessoa) > 0) {
 
                 return Response::json([
                     'status' => 201,
-                    'message' => 'Pessoa excluída com sucesso.',
+                    'message' => 'Pessoa listadas com sucesso.',
                     "data" => $aPessoa,
                 ]);
             } else {

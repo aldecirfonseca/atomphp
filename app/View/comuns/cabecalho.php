@@ -49,7 +49,7 @@ use Core\Library\Session;
                             <a class="nav-link" href="#">Quem Somos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Produtos/Serviços</a>
+                            <a class="nav-link" href="<?= baseUrl() ?>Home/produtos">Produtos/Serviços</a>
                         </li>
 
                         <?php if (Session::get("userId")): ?>

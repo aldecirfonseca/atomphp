@@ -17,6 +17,13 @@ class Home extends ControllerMain
         echo "Página sobre nós. AÇÃO: {$action}";
     }
 
+    public function produtos()
+    {
+        $PessoaModel = $this->loadModel("Pessoa");
+
+        return $this->loadView("produtos", $PessoaModel->lista("nome"));
+    }
+
     public function detalhes($action = null, $id = null, ...$params)
     {
         echo "Detalhes: <br />";
