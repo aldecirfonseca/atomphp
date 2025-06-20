@@ -68,6 +68,7 @@ class Usuario extends ControllerMain
             Session::set('errors', $errors);
         } else {
             unset($post['confSenha']);
+            $post['senha'] = password_hash($post['senha'], PASSWORD_DEFAULT);
         }
 
         if (!$lError) {
