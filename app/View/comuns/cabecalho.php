@@ -64,7 +64,7 @@ use Core\Library\Session;
                                         <li><a class="dropdown-item" href="<?= baseUrl() ?>usuario">Usuario</a></li>
                                     <?php endif; ?>                
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="<?= baseUrl() ?>Usuario/formTrocarSenha">Trocar a Senha</a></li>
+                                    <li><a class="dropdown-item" href="<?= baseUrl() ?>Sistema/formTrocarSenha">Trocar a Senha</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="<?= baseUrl() ?>uf">UF's</a></li>
                                     <li><a class="dropdown-item" href="<?= baseUrl() ?>cidade">Cidade</a></li>

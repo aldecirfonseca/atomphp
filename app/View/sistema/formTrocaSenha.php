@@ -16,7 +16,7 @@
 
 <?= exibeAlerta() ?>
 
-<form method="POST" action="<?= baseUrl() ?>Usuario/updateNovaSenha">
+<form method="POST" action="<?= baseUrl() ?>Sistema/updateNovaSenha">
 
     <input type="hidden" name="id" id="id" value="<?= Session::get("userId") ?>">
 
