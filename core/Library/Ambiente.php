@@ -12,7 +12,7 @@ class Ambiente
     public function load()
     {
         // analisa e carregar o conteúdo do arquivo .env em um array
-        $confAmbiente = parse_ini_file('..' . DIRECTORY_SEPARATOR . '.env', true);
+        $confAmbiente = parse_ini_file(PATHAPP . '.env', true);
 
         foreach ($confAmbiente as $key => $value) {
             if (gettype($confAmbiente[$key]) != "array") {

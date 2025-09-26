@@ -92,12 +92,12 @@ class ControllerMain
         }
 
         foreach ($nomeHelper AS $value) {
-            $pathHelperAtom = ".." . DIRECTORY_SEPARATOR . "core" . DIRECTORY_SEPARATOR . "Helper" . DIRECTORY_SEPARATOR . "{$value}.php";
+            $pathHelperAtom = PATHAPP . "core" . DIRECTORY_SEPARATOR . "Helper" . DIRECTORY_SEPARATOR . "{$value}.php";
             
             if (file_exists($pathHelperAtom)) {
                 require_once $pathHelperAtom;
             } else {
-                $pathHelperUser = ".." . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "Helper" . DIRECTORY_SEPARATOR . "{$value}.php";
+                $pathHelperUser = PATHAPP . "app" . DIRECTORY_SEPARATOR . "Helper" . DIRECTORY_SEPARATOR . "{$value}.php";
 
                 if (file_exists($pathHelperUser)) {
                     require_once $pathHelperUser;
@@ -117,7 +117,7 @@ class ControllerMain
     public function loadView($nome, $dados = [], $exibeCabRodape = true)
     {
         $aDados = $dados;
-        $pathView = ".." . DIRECTORY_SEPARATOR . "app" . DIRECTORY_SEPARATOR . "View" . DIRECTORY_SEPARATOR;
+        $pathView = PATHAPP . "app" . DIRECTORY_SEPARATOR . "View" . DIRECTORY_SEPARATOR;
 
         // carrega cabeçalho
         if ($exibeCabRodape) {
